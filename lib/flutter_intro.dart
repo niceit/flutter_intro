@@ -275,11 +275,15 @@ class Intro extends InheritedWidget {
     );
 
     if (step.overlayBuilder != null) {
+      final rightSize=_screenSize.width-(position.left??0);
+      final newWidgetSize=Size(300, _widgetSize.height);
       _overlayWidget = Stack(
         children: [
           Positioned(
-            width: position.width,
-            left: position.left,
+            // width: position.width,
+            // left: position.left,
+            width: 300,
+            left: rightSize<300?(position.left??0)-(300-rightSize):position.left,
             top: position.top,
             bottom: position.bottom,
             right: position.right,
@@ -296,7 +300,8 @@ class Intro extends InheritedWidget {
                       : null,
                   onFinish: _onFinish,
                   screenSize: _screenSize,
-                  size: _widgetSize,
+                  // size: _widgetSize,
+                  size: newWidgetSize,
                   offset: _widgetOffset,
                 ),
               ),
